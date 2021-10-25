@@ -11,9 +11,13 @@ body {
   background-color: #191919;
   color: #fff;
   font-family: monospace;
-  /* position: absolute; */
-  width: 100vw;
-  height: 100vh;
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
 }
 
 #main-container {
@@ -21,8 +25,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* width: 100vw;
-  height: 100vh; */
 }
 
 .button-group {
@@ -41,6 +43,13 @@ button {
   background-color: #ffffff;
   cursor: pointer;
   white-space: nowrap;
+}
+
+#button-page-1,
+#button-page-2,
+#button-page-3 {
+  width: 400px;
+  margin-bottom: 0.25rem;
 }
 
 #all-posts-container {
@@ -126,4 +135,16 @@ button {
 
 .dd-menu li:hover {
   background-color: #f6f6f6;
+}
+
+.audio-sample-card {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(8, 226, 255);
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  padding: 0.25rem;
 }

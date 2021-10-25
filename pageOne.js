@@ -1,4 +1,7 @@
-// Functions 
+/**
+ * Fetches posts from jsonplaceholder api
+ * @returns {Array}
+ */
 const fetchPosts = async() => {
   try {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
@@ -8,6 +11,11 @@ const fetchPosts = async() => {
   }
 }
 
+/**
+ * Fetches selected user's posts from jsonplaceholder api
+ * @param {number} userId
+ * @returns {Array}
+ */
 const fetchPostsFromUser = async(userId) => {
   try {
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`);
@@ -17,7 +25,12 @@ const fetchPostsFromUser = async(userId) => {
   }
 }
 
-const displayIndividualPost = (postData, parent) => {
+/**
+ * Create card for a single post in the DOM
+ * @param {Object} postData
+ * @param {DOM Object} parent
+ */
+const createSinglePostCard = (postData, parent) => {
   
   const postDivContainer = document.createElement("div");
   postDivContainer.setAttribute("id","individual-post-container");
@@ -30,10 +43,12 @@ const displayIndividualPost = (postData, parent) => {
   const titleText = document.createElement("p");
   titleText.innerHTML = `Title: ${postData.title}`;
   postDivContainer.appendChild(titleText);
-
-
 }
 
+
+/**
+ * Create multiple posts in the DOM (Sorted By Title)
+ */
 const displayAllPostsSortedByTitle = async() => {
   const parent = document.querySelector("#all-posts-container")
 
@@ -47,10 +62,13 @@ const displayAllPostsSortedByTitle = async() => {
 
   const postDataLength = sortedPostsData.length;
   for (let i = 0; i < postDataLength ; i+=1) {
-    displayIndividualPost(sortedPostsData[i], parent)
+    createSinglePostCard(sortedPostsData[i], parent)
   }
 }
 
+/**
+ * Create multiple posts in the DOM (Unsorted)
+ */
 const displayAllPostsUnsorted = async() => {
   const parent = document.querySelector("#all-posts-container")
   //fetch data
@@ -61,11 +79,15 @@ const displayAllPostsUnsorted = async() => {
 
   const postDataLength = postsData.length;
   for (let i = 0; i < postDataLength ; i+=1) {
-    displayIndividualPost(postsData[i], parent)
+    createSinglePostCard(postsData[i], parent)
   }
 
 }
 
+/**
+ * Create multiple posts in the DOM (Selected Users)
+ * @param {Numer} userId
+ */
 const displaySelectedUserPosts = async(userId) => {
   const parent = document.querySelector("#all-posts-container")
 
@@ -77,11 +99,15 @@ const displaySelectedUserPosts = async(userId) => {
 
   const allOfUsersPostsLength = allOfUsersPosts.length;
   for (let i = 0; i < allOfUsersPostsLength ; i+=1) {
-    displayIndividualPost(allOfUsersPosts[i], parent)
+    createSinglePostCard(allOfUsersPosts[i], parent)
   }
 
 }
 
+/**
+ * Create dropdown button
+ * @param {DOM Object} parent
+ */
 const createGroupByUserIdDropDownButton = (parent)=> {
 
   // create html elements for the drop down button
@@ -125,6 +151,9 @@ const createGroupByUserIdDropDownButton = (parent)=> {
   })
 }
 
+/**
+ * Create page to show all posts
+ */
 const createShowAllPostsPage = ()=> {
   // clear previous DOM
   mainContainer.innerHTML = "";
@@ -165,6 +194,9 @@ const createShowAllPostsPage = ()=> {
 
 }
 
+/**
+ * Create intro page
+ */
 const createPageOne = () => {
 
   // clear previous DOM
